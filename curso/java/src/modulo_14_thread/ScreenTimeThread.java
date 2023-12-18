@@ -2,6 +2,10 @@ package modulo_14_thread;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class ScreenTimeThread extends JDialog {
     // Painel de componentes
@@ -15,6 +19,40 @@ public class ScreenTimeThread extends JDialog {
 
     private JButton startButton = new JButton("Start");
     private JButton stopButton = new JButton("Stop");
+
+    private Runnable oneThread = new Runnable() {
+        @Override
+        public void run() {
+            while (true) {
+                showTime.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss")
+                        .format(Calendar.getInstance().getTime()));
+
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    };
+    private Runnable secondThread = new Runnable() {
+        @Override
+        public void run() {
+            while (true) {
+                secondShowTime.setText(new SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
+                        .format(Calendar.getInstance().getTime()));
+
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    };
+
+    private Thread threadOneTime;
+    private Thread threadTwoTime;
 
     public ScreenTimeThread() {
         setLocationRelativeTo(null);
@@ -64,6 +102,31 @@ public class ScreenTimeThread extends JDialog {
         stopButton.setPreferredSize(new Dimension(92, 25));
         gridBagConstraints.gridx++;
         jPanel.add(stopButton, gridBagConstraints);
+
+        startButton.addActionListener(new ActionListener() {
+            // Executa o clique no botão
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                threadOneTime = new Thread(oneThread);
+                threadOneTime.start();
+
+                threadTwoTime = new Thread(secondThread);
+                threadTwoTime.start();
+
+                stopButton.setEnabled(true);
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                threadOneTime.stop();
+                threadTwoTime.stop();
+                stopButton.setEnabled(false);
+            }
+        });
+
+        stopButton.setEnabled(false);
 
         // Adiciona painel a tela
         add(jPanel, BorderLayout.WEST);
