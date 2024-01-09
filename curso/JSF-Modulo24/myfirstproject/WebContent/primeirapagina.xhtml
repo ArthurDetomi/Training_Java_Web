@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Olá JSF</title>
+</h:head>
+
+<h:body>
+
+	<h:form id="personForm" >
+		Nome:
+		<h:inputText id="nameField" value="#{personBean.name}" /> <br/>
+
+		<br/>
+		
+		<h:commandButton binding="#{personBean.commandButton}" value="Adicionar Nome" action="#{personBean.addName}" />
+		
+		<h:dataTable value="#{personBean.names}" var="name">
+			<h:column>
+				<h:outputText value="#{name}"/>
+			</h:column>
+		</h:dataTable>
+		
+		
+	</h:form>
+
+</h:body>
+
+
+</html>
