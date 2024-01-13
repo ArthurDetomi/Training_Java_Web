@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Olá JSF página index</title>
+	
+	<script>
+		function alterarValorDoCampo () {
+			var campo = document.getElementById("personForm:nome");
+			campo.value = "clicou";
+		}
+	</script>
+</h:head>
+
+<h:body>
+
+	<h:form id="personForm" >
+		<h1>Olá JSF página index</h1>
+		<!-- Navegação implicita -->
+		<h:commandButton value="Navegação implicita" action="primeirapagina" /> 
+		<!-- Navegação explicita -->
+		<h:commandButton value="Navegação explicita" action="explicita" /> 
+		<br/>
+		<br/>
+		
+		<h:inputText id="nome" onclick="this.value='troquei o valor'" onchange="this.value = this.value.toUpperCase();" /> 
+		<h:commandButton value="clicar" onclick="alterarValorDoCampo()"/>
+		
+	</h:form>
+
+</h:body>
+
+
+</html>

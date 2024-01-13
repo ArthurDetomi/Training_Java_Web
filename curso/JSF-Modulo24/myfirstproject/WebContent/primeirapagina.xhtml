@@ -11,20 +11,26 @@
 
 	<h:form id="personForm" >
 		Nome:
-		<h:inputText id="nameField" value="#{personBean.name}" /> <br/>
-
+		<h:inputText id="nameField" value="#{pessoaBean.nome}" /> <br/>
+		<br/>Senha:
+		<h:inputSecret id="senha" value="#{pessoaBean.senha}" />
+		<br/>Texto:<br/>
+		<h:inputTextarea id="texto"  value="#{pessoaBean.texto}" rows="10" cols="10"/>
+		
 		<br/>
 		
-		<h:commandButton binding="#{personBean.commandButton}" value="Adicionar Nome" action="#{personBean.addName}" />
+		<h:commandButton binding="#{pessoaBean.commandButton}" value="Adicionar Nome" action="#{pessoaBean.addNome}" />
 		
-		<h:dataTable value="#{personBean.names}" var="name">
+		<h:dataTable value="#{pessoaBean.nomes}" var="nome">
 			<h:column>
-				<h:outputText value="#{name}"/>
+				<h:outputText value="#{nome}"/>
 			</h:column>
 		</h:dataTable>
 		
-		
+		<h:commandButton value="Voltar" action="index" />
 	</h:form>
+	
+	
 
 </h:body>
 
