@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="pos-java-maven-hibernate">
+	<class>model.Usuario</class>
+		<properties>
+			<!-- Dados de conexão com o banco -->
+			<property name="hibernate.connection.driver_class"
+				value="com.mysql.cj.jdbc.Driver" />
+			<property name="hibernate.connection.username"
+				value="arthur" />
+			<property name="hibernate.connection.password"
+				value="db1234" />
+			<property name="hibernate.connection.url"
+				value="jdbc:mysql://localhost:3306/posjavahibernate" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL8Dialect" />
+			<property name="hibernate.hbm2dll.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.archive.autodetection" value="class" />
+		</properties>
+	</persistence-unit>
+</persistence>
