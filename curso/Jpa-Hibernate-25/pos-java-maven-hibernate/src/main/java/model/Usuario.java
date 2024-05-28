@@ -63,6 +63,12 @@ public class Usuario implements Serializable {
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha="
+				+ senha + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}
